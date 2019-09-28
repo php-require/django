@@ -1,0 +1,19 @@
+python manage.py makemigrations articles # готовим миграцию, описаную модель файла \foodplay\apps\articles\models.py
+
+python manage.py sqlmigrate articles 0001 # посмотреть подготовленный запрос в бд, 0001 номер миграции
+
+python manage.py migrate # приминение миграций
+
+python manage.py shell # интерактивная консоль
+
+from articles.models import Article, Comment # импортируем модель
+
+from django.utils import timezone # Импортируем модуль timezone из django
+
+Article.objects.all() # вернет все объекты из базы данных (все обьекты - все статьии*)
+
+a = Article(article_title = "Первая статья", article_text = "какой-то текст ...", pub_date = timezone.now()) # иницилизируем
+
+a.save() # сохраняем в db 
+
+exit() # выход из shell 
