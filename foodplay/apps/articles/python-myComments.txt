@@ -13,7 +13,31 @@ from django.utils import timezone # Импортируем модуль timezone
 Article.objects.all() # вернет все объекты из базы данных (все обьекты - все статьии*)
 
 a = Article(article_title = "Первая статья", article_text = "какой-то текст ...", pub_date = timezone.now()) # иницилизируем
-
 a.save() # сохраняем в db 
+
+a.article_title # обратились к обьекту
+
+a.id # смотри id
+
+a = Article.objects.get(id = 1)
+
+a
+
+a.was_published_resently() # вызываем метод, не прошло ещё 7 дней с момент та публикации, если да то тру
+
+Article.objects.filter(article_title__startswith = "Первая") # ишем по вхождению
+
+a.article_title = "-vovovovvoMAYAvovovovov-"
+a.save() # обновляем запись
+
+from django.utils import timezone
+current_year = timezone.now().year
+current_year
+
+Article.objects.filter(pub_date__year = current_year)
+Article.objects.filter(pub_date__year = current_year -1)
+
+a = Article()
+a.comment_set.all()
 
 exit() # выход из shell 
